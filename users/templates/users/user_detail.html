@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ username }}さんのページ - {{ site_name }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: blue; }
+        nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>{{ username }}さんのページ</h1>
+    <nav>
+        <a href="{% url 'core:index' %}">トップページに戻る</a>
+    </nav>
+    <hr>
+    <h2>自己紹介</h2>
+    <p>{{ user_info.bio }}</p>
+
+    <h2>読んだ本</h2>
+    {% if user_info.read_books %}
+        <ul>
+            {% for book_title in user_info.read_books %}
+                <li>{{ book_title }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>まだ本を読んでいません。</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,65 @@
+{# book_project/templates/registration/login.html #}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン - Personal Library</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4;}
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 { text-align: center; color: #333; }
+        form div { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input[type="text"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* パディングとボーダーを幅に含める */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .errorlist {
+            color: red;
+            list-style-type: none;
+            padding: 0;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        .errorlist li {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ログイン</h1>
+        <form method="post">
+            {% csrf_token %} {# Djangoフォームには必須のセキュリティトークン #}
+            {{ form.as_p }} {# フォームのフィールドをパラグラフとして表示 #}
+            <button type="submit">ログイン</button>
+        </form>
+        <p>アカウントをお持ちでないですか？ <a href="#">サインアップはこちら</a></p> {# 将来的な登録ページへのリンク #}
+    </div>
+</body>
+</html>
