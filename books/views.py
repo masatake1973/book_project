@@ -2,7 +2,23 @@
 
 from django.shortcuts import render, get_object_or_404
 # 将来的にはBookモデルから書籍情報を取得しますが、今は仮のデータを使います
+from django.contrib.auth.decorators import login_required
 
+@login_required
+def book_list(request):
+    # 仮の書籍情報
+    books = [
+        {'id': 1, 'title': 'レ・ミゼラブル'},
+        {'id': 2, 'title': '罪と罰'},
+        {'id': 3, 'title': '存在と時間'},
+    ]
+    context = {
+        'site_name': 'Personal Library',
+        'books': books,
+    }
+    return render(request, 'books/book_list.html', context)
+
+@login_required
 def book_detail(request, book_id):
     # 書籍詳細ページの表示ロジック
     # ★ ここでは仮の書籍情報とデータを表示します

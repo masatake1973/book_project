@@ -1,55 +1,13 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site_name }} - トップページ</title>
-    <style>
-        body { font-family: sans-serif; margin: 20px; }
-        nav a { margin-right: 15px; text-decoration: none; color: blue; }
-        nav a:hover { text-decoration: underline; }
-    </style>
-</head>
-<body>
-     <nav>
-        <a href="{% url 'users:user_detail' '田中　一郎' %}">田中 一郎のページ</a>
-        {# ...他のリンク... #}
+  {% extends 'base.html' %}
 
-        {% if user.is_authenticated %} {# ユーザーがログインしている場合 #}
-        {# ログアウトリンクをフォーム形式で記述 #}
-            <form action="{% url 'logout' %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" style="background:none; border:none; color:blue; cursor:pointer; padding:0; font-size:1em;">ログアウト</button>
-            </form>
-        {% else %} {# ログインしていない場合 #}
-            <a href="{% url 'login' %}">ログイン</a>
-        {% endif %}
-    </nav>
-    <h1>{{ site_name }}</h1>
-    <p>{{ message }}</p>
+    {% block title %}トップページ - {{ site_name }}{% endblock %}
 
-    <nav>
-        <a href="{% url 'users:user_detail' '田中　一郎' %}">田中 一郎のページ</a>
-        <a href="{% url 'users:user_detail' '佐藤　愛子' %}">佐藤 愛子のページ</a>
-        <a href="{% url 'users:user_detail' '鈴木　たかし' %}">鈴木 たかしのページ</a>
-        <br>
-        <a href="{% url 'books:book_detail' 1 %}">レ・ミゼラブル</a>
-        <a href="{% url 'books:book_detail' 2 %}">罪と罰</a>
-        <a href="{% url 'books:book_detail' 3 %}">存在と時間</a>
-    </nav>
+    {% block content %}
+        <h1>{{ site_name }}</h1>
+        <p>{{ message }}</p>
 
-    <h2>ユーザー一覧（仮）</h2>
-    <ul>
-        <li><a href="{% url 'users:user_detail' '田中　一郎' %}">田中 一郎</a></li>
-        <li><a href="{% url 'users:user_detail' '佐藤　愛子' %}">佐藤 愛子</a></li>
-        <li><a href="{% url 'users:user_detail' '鈴木　たかし' %}">鈴木 たかし</a></li>
-    </ul>
-
-    <h2>書籍一覧（仮）</h2>
-    <ul>
-        <li><a href="{% url 'books:book_detail' 1 %}">レ・ミゼラブル</a></li>
-        <li><a href="{% url 'books:book_detail' 2 %}">罪と罰</a></li>
-        <li><a href="{% url 'books:book_detail' 3 %}">存在と時間</a></li>
-    </ul>
-</body>
-</html>
+        <p>
+            ここでは、あなたの読んだ本を記録し、他のユーザーと感想を共有できます。
+            まずは、ユーザーや書籍の一覧を覗いてみましょう。
+        </p>
+    {% endblock %}

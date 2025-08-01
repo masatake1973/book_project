@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ library_info.title }} - {{ site_name }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: blue; }
+        nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>{{ library_info.title }}</h1>
+    <nav>
+        <a href="{% url 'core:index' %}">トップページに戻る</a>
+    </nav>
+    <hr>
+    <p>図書館: {{ library_info.name }}</p>
+
+    <h2>評価</h2>
+    {% if library_info.reviews %}
+        <ul>
+            {% for review in library_info.reviews %}
+                <li><strong>{{ review.user }}さんの感想:</strong> {{ review.text }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>まだ評価はありません。</p>
+    {% endif %}
+</body>
+</html>

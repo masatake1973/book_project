@@ -23,6 +23,8 @@ urlpatterns = [
     path('', include('core.urls')),
     path('users/', include('users.urls')),
     path('books/', include('books.urls')),
+    path('stores/', include('stores.urls')),
+    path('libraries/', include('libraries.urls')),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='core:index'), name='logout'), 
 ]

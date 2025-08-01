@@ -1,0 +1,26 @@
+{# libraries/templates/libraries/library_list.html #}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>図書館一覧 - {{ site_name }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: blue; }
+        nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>図書館一覧</h1>
+    <nav>
+        <a href="{% url 'core:index' %}">トップページに戻る</a>
+    </nav>
+    <hr>
+    <ul>
+        {% for library in libraries %}
+            <li><a href="{% url 'libraries:library_detail' library.id %}">{{ library.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'core',  # ★追加
     'users', # ★追加
     'books', # ★追加
+    'stores',
+    'libraries',
 ]
 
 MIDDLEWARE = [

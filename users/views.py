@@ -3,9 +3,24 @@
 from django.shortcuts import render, get_object_or_404
 # 将来的にはUserモデルからユーザー情報を取得しますが、今は仮のデータを使います
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model() # DjangoのUserモデルを取得
 
+@login_required
+def user_list(request):
+    users = [
+        {'username': '田中　一郎'},
+        {'username': '佐藤　愛子'},
+        {'username': '鈴木　たかし'},
+    ]
+    context = {
+        'site_name': 'Personal Library',
+        'users': users,
+    }
+    return render(request, 'users/user_list.html', context)
+
+@login_required
 def user_detail(request, username):
     # ユーザー詳細ページの表示ロジック
     # ★ ここでは仮のユーザー情報とデータを表示します

@@ -1,0 +1,44 @@
+{# books/templates/books/book_list.html #}
+{% extends 'base.html' %}
+
+    {% block title %}書籍一覧 - {{ site_name }}{% endblock %}
+
+    {% block content %}
+        <h1>書籍一覧</h1>
+        <p>{{ message }}</p>
+
+        <p>
+        <hr>
+            <ul>
+                {% for book in books %}
+                    <li><a href="{% url 'books:book_detail' book.id %}">{{ book.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </p>
+    {% endblock %}
+
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書籍一覧 - {{ site_name }}</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        nav a { margin-right: 15px; text-decoration: none; color: blue; }
+        nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>書籍一覧</h1>
+    <nav>
+        <a href="{% url 'core:index' %}">トップページに戻る</a>
+    </nav>
+    <hr>
+    <ul>
+        {% for book in books %}
+            <li><a href="{% url 'books:book_detail' book.id %}">{{ book.title }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html> -->
